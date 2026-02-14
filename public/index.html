@@ -33,7 +33,23 @@
         <textarea id="code" readonly placeholder="Здесь будет код Arduino для ESP32..."></textarea>
     </div>
 
-    <script>
+    <!-- Панель инструментов с блоками для ESP32 -->
+    <xml id="toolbox" style="display: none">
+        <category name="Ввод/вывод">
+            <block type="esp32_pin_mode"></block>
+            <block type="esp32_digital_write"></block>
+            <block type="esp32_digital_read"></block>
+        </category>
+        <category name="Время">
+            <block type="esp32_delay"></block>
+        </category>
+        <category name="Serial">
+            <block type="esp32_serial_begin"></block>
+            <block type="esp32_serial_print"></block>
+            <block type="esp32_serial_println"></block>
+        </category>
+    </xml>
+     <script>
         var toolbox = document.getElementById('toolbox');
         var blocklyArea = document.getElementById('blocklyArea');
         var workspace = Blockly.inject(blocklyArea, {
@@ -54,21 +70,5 @@
         });
     </script>
 
-    <!-- Панель инструментов с блоками для ESP32 -->
-    <xml id="toolbox" style="display: none">
-        <category name="Ввод/вывод">
-            <block type="esp32_pin_mode"></block>
-            <block type="esp32_digital_write"></block>
-            <block type="esp32_digital_read"></block>
-        </category>
-        <category name="Время">
-            <block type="esp32_delay"></block>
-        </category>
-        <category name="Serial">
-            <block type="esp32_serial_begin"></block>
-            <block type="esp32_serial_print"></block>
-            <block type="esp32_serial_println"></block>
-        </category>
-    </xml>
 </body>
 </html>
