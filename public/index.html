@@ -11,7 +11,16 @@
         #code { width: 100%; height: calc(100% - 40px); font-family: monospace; padding: 10px; box-sizing: border-box; border: none; resize: none; }
         #generateBtn { margin: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
     </style>
-    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+ 
+    <!-- Load Blockly core -->
+<script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+<!-- Load the default blocks -->
+<script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+<!-- Load a generator -->
+<script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
+<!-- Load a message file -->
+<script src="https://unpkg.com/blockly/msg/ru.js"></script>
+    
     <script src="blocks.js"></script>
     <script src="generators.js"></script>
 </head>
