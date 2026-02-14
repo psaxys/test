@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Blockly для ESP32</title>
+    <style>
+        html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; }
+        #blocklyArea { height: 70%; width: 100%; }
+        #codeArea { height: 30%; width: 100%; border-top: 1px solid #ccc; }
+        #codeHeader { padding: 10px; background-color: #f0f0f0; border-bottom: 1px solid #ccc; }
+        #code { width: 100%; height: calc(100% - 40px); font-family: monospace; padding: 10px; box-sizing: border-box; border: none; resize: none; }
+        #generateBtn { margin: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="blocks.js"></script>
+    <script src="generators.js"></script>
+</head>
+<body>
+    <div id="blocklyArea"></div>
+    <div id="codeArea">
+        <div id="codeHeader">
+            <button id="generateBtn">Сгенерировать код</button>
+        </div>
+        <textarea id="code" readonly placeholder="Здесь будет код Arduino для ESP32..."></textarea>
+    </div>
+
+    <script>
+        var toolbox = document.getElementById('toolbox');
+        var blocklyArea = document.getElementById('blocklyArea');
+        var workspace = Blockly.inject(blocklyArea, {
+            toolbox: toolbox,
+            trashcan: true,
+            scrollbars: true,
+            horizontalLayout: false,
+            toolboxPosition: 'start',
+            zoom: { controls: true, wheel: true }
+        });
+
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
+            var fullCode = '// Код для ESP32 (Arduino)\n' +
+                           '// Скопируйте нужные части в setup() и loop()\n\n' +
+                           code;
+            document.getElementById('code').value = fullCode;
+        });
+    </script>
+
+    <!-- Панель инструментов с блоками для ESP32 -->
+    <xml id="toolbox" style="display: none">
+        <category name="Ввод/вывод">
+            <block type="esp32_pin_mode"></block>
+            <block type="esp32_digital_write"></block>
+            <block type="esp32_digital_read"></block>
+        </category>
+        <category name="Время">
+            <block type="esp32_delay"></block>
+        </category>
+        <category name="Serial">
+            <block type="esp32_serial_begin"></block>
+            <block type="esp32_serial_print"></block>
+            <block type="esp32_serial_println"></block>
+        </category>
+    </xml>
+</body>
+</html>
